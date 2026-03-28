@@ -37,7 +37,7 @@ def add_aluno():
 
 @app.route('/delete/<int:id>')
 def delete_aluno(id):
-    conn = get_db_connection
+    conn = get_db_connection()
     conn.execute('DELETE FROM alunos WHERE id = ?', (id,))
     conn.commit()
     conn.close()
