@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Alunos</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 40px;
+        }
+        table {
+            width: 100%; 
+            border-collapse: collapse;
+            margin-top: 20px;  
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .btn-del {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Alunos</h1>
+    <form action="/add" method="post">
+        <input type="text" name="nome" placeholder="Nome do Aluno" required>
+        <input type="text" name="curso" placeholder="Curso" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Curso</th>
+            <th>Ações</th>
+        </tr>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno['id'] }}</td>
+            <td>{{ aluno['nome'] }}</td>
+            <td>{{ aluno['curso'] }}</td>
+            <td>
+                <a class="btn-del" href="{{ url_for('delete_aluno', id=aluno['id']) }}">
+                    Excluir
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
